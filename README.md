@@ -30,8 +30,6 @@ Projekt oparty o **Symfony + FrankenPHP**, z bazą **PostgreSQL** i **Redis**, u
 Plik **`.env.docker`** (na podstawie **`.env.docker.dist`**):
 
 ```env
-APP_ENV=dev
-
 POSTGRES_DB=h2h_rek_db
 POSTGRES_USER=postgres_user
 POSTGRES_PASSWORD=postgres_pass
@@ -64,6 +62,12 @@ make install
 ### Migracje bazy danych
 ```bash
 make migrate
+```
+
+
+### Testy
+```bash
+make test
 ```
 
 Dokumentacja API dostępna pod:
