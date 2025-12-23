@@ -40,5 +40,19 @@ services:
     ports:
       - "6379:6379"
 
+  db_test:
+      image: postgres:16-alpine
+      container_name: h2h_db_test
+      environment:
+          POSTGRES_DB: app_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+      ports:
+          - "5433:5432"
+      volumes:
+          - pg_test_data:/var/lib/postgresql/data
+
+
 volumes:
   pg_data:
+  pg_test_data:
