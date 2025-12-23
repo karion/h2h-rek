@@ -70,10 +70,6 @@ req: ## composer require (np. make req PKG="symfony/orm-pack")
 	$(DC_RUN) exec $(APP_SERVICE) composer require $(PKG)
 
 # --- Symfony console ---
-.PHONY: console
-console: ## Symfony console (np. make console ARGS="cache:clear")
-	$(DC_RUN) exec $(APP_SERVICE) php bin/console $(ARGS)
-
 .PHONY: cc
 cc: ## cache:clear
 	$(DC_RUN) exec $(APP_SERVICE) php bin/console cache:clear
@@ -87,8 +83,8 @@ db: ## Wejdź do psql w kontenerze db
 migrate: ## doctrine:migrations:migrate
 	$(DC_RUN) exec $(APP_SERVICE) php bin/console doctrine:migrations:migrate --no-interaction
 
-.PHONY: mig
-mig: ## doctrine:migrations:diff
+.PHONY: migdiff
+migdiff: ## doctrine:migrations:diff
 	$(DC_RUN) exec $(APP_SERVICE) php bin/console doctrine:migrations:diff
 
 # --- Redis (opcjonalne) ---
@@ -104,10 +100,6 @@ redis-flush: ## FLUSHALL (UWAGA: czyści Redis)
 .PHONY: test
 test: ## PHPUnit (jeśli masz)
 	$(DC_RUN)  exec $(APP_SERVICE) php bin/phpunit $(ARGS)
-
-.PHONY: cs
-cs: ## PHP-CS-Fixer (jeśli masz w vendor/bin)
-	$(DC_RUN)  exec $(APP_SERVICE) ./vendor/bin/php-cs-fixer fix -v
 
 # --- Clean ---
 .PHONY: clean
